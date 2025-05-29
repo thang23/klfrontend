@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sicubulary</title>
+  <!-- CSS cơ bản để căn giữa và tránh dồn trái -->
+
+
+
+  <script>
+    // Kiểm tra route và tải CSS tương ứng
+    const path = window.location.pathname;
+    const cssFiles = [];
+    const jsFiles = [];
+
+    // Nếu là trang Admin
+    if (path.startsWith('/admin')) {
+      cssFiles.push(
+        '/admin/vendor/fontawesome-free/css/all.min.css',
+        '/admin/css/sb-admin-2.min.css',
+        '/admin/vendor/datatables/dataTables.bootstrap4.min.css'
+      );
+      // // Thêm JS riêng cho Admin
+      // jsFiles.push(
+      //   '/admin/vendor/jquery/jquery.min.js',
+      //   '/admin/vendor/bootstrap/js/bootstrap.bundle.min.js',
+      //   '/admin/vendor/jquery-easing/jquery.easing.min.js',
+      //   '/admin/vendor/datatables/jquery.dataTables.min.js',
+      //   '/admin/vendor/datatables/dataTables.bootstrap4.min.js',
+      //   '/admin/js/sb-admin-2.min.js'
+      // );
+    }
+    // Nếu là trang Public (Home, Khám phá)
+    else if (path === '/home' || path === '/journey-history' || path === '/contact' || path.startsWith('/journey/') || path === "/create-posts" || path.startsWith('/profile') || path === '/login' || path === '/reset-password' || path === '/verify' || path.startsWith('/bai-viet') || path.startsWith('/khampha') || path.startsWith('/category') || path.startsWith('/dieuhuong') || path === '/404') {
+      cssFiles.push(
+        '/user/css/style.css',
+        '/user/css/bootstrap.min.css',
+        '/user/css/plugins/owl-carousel/owl.carousel.css',
+        '/user/css/plugins/jquery.countdown.css',
+        '/user/css/plugins/magnific-popup/magnific-popup.css',
+        '/user/css/skins/skin-demo-24.css',
+        '/user/css/demos/demo-24.css',
+        '/user/css/plugins/nouislider/nouislider.css'
+      );
+    }
+
+    // Tải CSS ngay lập tức
+    cssFiles.forEach((href) => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+    });
+  </script>
+
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Đây là file React chính -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
